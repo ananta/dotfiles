@@ -1,0 +1,2 @@
+-- Mac Configurations
+require("mac")

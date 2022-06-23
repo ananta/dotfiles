@@ -1,0 +1,7 @@
+[user]
+	name = ananta
+	email = 12180395+ananta@users.noreply.github.com 
+[credential]
+	helper = osxkeychain
+[pull]
+	rebase = false
