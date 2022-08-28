@@ -125,6 +125,9 @@ return packer.startup({
 	-- Discord
 	use("andweeb/presence.nvim")
 
+  -- Notes using VimWiki
+  use("vimwiki/vimwiki")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
