@@ -40,5 +40,12 @@ end
 
 starship init fish | source
 
+# alias for super computer
+alias kssh 'kitty +kitten'
+alias palmetto 'ssh anantab@login.palmetto.clemson.edu'
+alias compbio 'ssh compbio-server-2@compbio.clemson.edu'
+alias ndvim 'nvim --cmd "set rtp+=./"'
+alias socashish 'ssh abastol@access.computing.clemson.edu -t ssh joey1'
 
+export PALMETTO_SCP='anantab@xfer02-ext.clemson.edu:/home/anantab'
 
