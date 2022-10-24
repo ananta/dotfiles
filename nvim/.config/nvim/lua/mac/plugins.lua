@@ -110,7 +110,7 @@ return packer.startup({
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 	-- Toggleterm
-	use{"akinsho/toggleterm.nvim", tag="v1.*"}
+	use{"akinsho/toggleterm.nvim", tag="*"}
 
 	-- Indentline
 	use("lukas-reineke/indent-blankline.nvim")
