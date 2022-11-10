@@ -79,6 +79,14 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- GitSigns --
+keymap("n","]g", "<cmd>Gitsigns next_hunk<CR>", opts)
+keymap("n","[g", "<cmd>Gitsigns prev_hunk<CR>", opts)
+keymap("n","<Leader>gp", "<cmd>Gitsigns preview_hunk<CR>", opts)
+keymap("n","<Leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
+keymap("n","<Leader>gr", "<cmd>Gitsigns reset_hunk<CR>", opts)
+keymap("n","<Leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", opts)
+
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
