@@ -40,108 +40,107 @@ packer.init({
 })
 
 return packer.startup({
-  function(use)
-	-- Basics
-	use("wbthomason/packer.nvim") -- Have packer manage itself
-	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+	function(use)
+		-- Basics
+		use("wbthomason/packer.nvim") -- Have packer manage itself
+		use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
+		use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 
-	-- Colorscheme
-	use("folke/tokyonight.nvim")
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin"
-  })
+		-- Colorscheme
+		use("folke/tokyonight.nvim")
+		use({
+			"catppuccin/nvim",
+			as = "catppuccin",
+		})
 
-	-- Completion Plugins
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("saadparwaiz1/cmp_luasnip")
-	use("hrsh7th/cmp-nvim-lua")
+		-- Completion Plugins
+		use("hrsh7th/nvim-cmp")
+		use("hrsh7th/cmp-buffer")
+		use("hrsh7th/cmp-path")
+		use("hrsh7th/cmp-cmdline")
+		use("saadparwaiz1/cmp_luasnip")
+		use("hrsh7th/cmp-nvim-lua")
 
+		-- Snippets
+		use("L3MON4D3/LuaSnip") -- snippet engine
+		use("rafamadriz/friendly-snippets") -- useful snippets
+		use("SirVer/ultisnips")
 
-	-- Snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("rafamadriz/friendly-snippets") -- useful snippets
-  use("SirVer/ultisnips")
+		-- LSP
+		use({
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+		})
 
-	-- LSP
-	use({
-		"neovim/nvim-lspconfig",
-		"williamboman/nvim-lsp-installer",
-		"hrsh7th/cmp-nvim-lsp",
-	})
+		-- Comment
+		use("numToStr/Comment.nvim")
+		use("JoosepAlviste/nvim-ts-context-commentstring")
 
-	-- Comment
-	use("numToStr/Comment.nvim")
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+		-- Autopair
+		use("windwp/nvim-autopairs")
 
-	-- Autopair
-	use("windwp/nvim-autopairs")
+		-- Telescope
+		use("nvim-telescope/telescope.nvim")
+		use("nvim-telescope/telescope-media-files.nvim")
 
-	-- Telescope
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-media-files.nvim")
+		-- Treesitter
+		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+		use("p00f/nvim-ts-rainbow")
 
-	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("p00f/nvim-ts-rainbow")
+		-- Gitsigns
+		use("lewis6991/gitsigns.nvim")
 
-	-- Gitsigns
-	use("lewis6991/gitsigns.nvim")
+		-- Nvim Tree
+		use({
+			"kyazdani42/nvim-tree.lua",
+			requires = {
+				"kyazdani42/nvim-web-devicons", -- optional, for file icon
+			},
+		})
+		-- Bufferline
+		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+		use("moll/vim-bbye")
+		-- Null ls || Formatter || Diatnostics
+		use("jose-elias-alvarez/null-ls.nvim")
+		-- Lualine
+		use({
+			"nvim-lualine/lualine.nvim",
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		})
+		-- Toggleterm
+		use({ "akinsho/toggleterm.nvim", tag = "*" })
 
-	-- Nvim Tree
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icon
-		},
-	})
-	-- Bufferline
-	use{"akinsho/bufferline.nvim", tag="v2.*", requires='kyazdani42/nvim-web-devicons'}
-	use("moll/vim-bbye")
-	-- Null ls || Formatter || Diatnostics
-	use("jose-elias-alvarez/null-ls.nvim")
-	-- Lualine
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-	-- Toggleterm
-	use{"akinsho/toggleterm.nvim", tag="*"}
+		-- Indentline
+		use("lukas-reineke/indent-blankline.nvim")
 
-	-- Indentline
-	use("lukas-reineke/indent-blankline.nvim")
+		-- Alpha
+		use("goolord/alpha-nvim")
+		use("antoinemadec/FixCursorHold.nvim")
 
-	-- Alpha
-	use("goolord/alpha-nvim")
-	use("antoinemadec/FixCursorHold.nvim")
+		-- Impatient
+		use("lewis6991/impatient.nvim")
 
-	-- Impatient
-	use("lewis6991/impatient.nvim")
+		-- Discord
+		use("andweeb/presence.nvim")
 
-	-- Discord
-	use("andweeb/presence.nvim")
+		-- Markdown preview
+		use({
+			"iamcco/markdown-preview.nvim",
+			run = function()
+				vim.fn["mkdp#util#install"]()
+			end,
+		})
 
-  -- Notes using VimWiki
-  use("vimwiki/vimwiki")
+		-- Automatically set up your configuration after cloning packer.nvim
+		-- Put this at the end after all plugins
+		if PACKER_BOOTSTRAP then
+			require("packer").sync()
+		end
+	end,
 
-  -- Markdown preview
-  use({"iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-    })
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end,
-
-  config= {
-    max_jobs = 10,
-  }
-
+	config = {
+		max_jobs = 10,
+	},
 })

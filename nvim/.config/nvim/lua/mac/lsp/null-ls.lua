@@ -3,23 +3,18 @@ if not null_ls_status_ok then
 	return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
 	debug = false,
 	on_attach = function(client)
 		if client.server_capabilities.documentFormattingProvider then
-			-- formatonsave
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		end
 	end,
 	sources = {
 		formatting.prettier,
-		-- formatting.black.with { extra_args = { "--fast" } },
-		-- formatting.yapf,
 		formatting.stylua,
 		diagnostics.flake8,
 	},
