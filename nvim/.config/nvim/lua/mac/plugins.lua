@@ -113,7 +113,7 @@ return packer.startup({
 		use({ "akinsho/toggleterm.nvim", tag = "*" })
 
 		-- Indentline
-		use("lukas-reineke/indent-blankline.nvim")
+		use({ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} })
 
 		-- Alpha
 		use("goolord/alpha-nvim")
@@ -121,9 +121,6 @@ return packer.startup({
 
 		-- Impatient
 		use("lewis6991/impatient.nvim")
-
-		-- Discord
-		use("andweeb/presence.nvim")
 
 		-- Markdown preview
 		use({

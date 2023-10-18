@@ -21,11 +21,13 @@ mason.setup({
 local servers = {
 	"rust_analyzer",
 	"tsserver",
-	"omnisharp",
+	"csharp_ls",
 }
 
 mason_lspconfig.setup({
 	ensure_installed = servers,
+	sync_install = false,
+	ignore_install = { "javascript" },
 })
 
 for _, lsp in ipairs(servers) do

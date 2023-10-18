@@ -6,7 +6,16 @@ if not status_ok then
 	return
 end
 
+local status_api_ok, api = pcall(require, "nvim-tree.api")
+if not status_ok then
+	return
+end
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.api.nvim_create_augroup("nvim_tree_augroup", { clear = true })
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = "nvim_tree_augroup",
 	callback = function(data)
@@ -23,16 +32,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			vim.cmd.cd(data.file)
 		end
 		-- open the tree
-		require("nvim-tree.api").tree.open()
+		api.tree.open()
 	end,
 })
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
+local function my_on_attach(bufnr)
+	local function opts(desc)
+		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	end
+	-- apply default mappings
+	api.config.mappings.default_on_attach(bufnr)
 
-local tree_cb = nvim_tree_config.nvim_tree_callback
+	-- custom mappings
+	vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
+	vim.keymap.set("n", "s", "", opts("Open"))
+end
 
 nvim_tree.setup({
 	disable_netrw = true,
@@ -42,6 +56,7 @@ nvim_tree.setup({
 	--[[ 	"dashboard", ]]
 	--[[ 	"alpha", ]]
 	--[[ }, ]]
+	on_attach = my_on_attach,
 	renderer = {
 		icons = {
 			webdev_colors = true,
@@ -107,18 +122,7 @@ nvim_tree.setup({
 	},
 	view = {
 		width = 30,
-		hide_root_folder = false,
 		side = "left",
-		mappings = {
-			custom_only = false,
-			list = {
-				{ key = { "l", "<CR>" }, cb = tree_cb("edit") },
-				{ key = "h", cb = tree_cb("close_node") },
-				{ key = "v", cb = tree_cb("vsplit") },
-				{ key = "o", cb = tree_cb("system_open") },
-				{ key = "s", action = "" },
-			},
-		},
 		number = false,
 		relativenumber = false,
 	},

@@ -12,6 +12,9 @@ require("catppuccin").setup({
 		shade = "dark",
 		percentage = 0.15,
 	},
+	no_italic = false,
+	no_bold = false,
+	no_underline = false,
 	styles = {
 		comments = { "italic" },
 		conditionals = { "italic" },
@@ -27,7 +30,6 @@ require("catppuccin").setup({
 		operators = {},
 	},
 	integrations = {
-		-- For various plugins integrations see https://github.com/catppuccin/nvim#integrations
 		treesitter = true,
 		native_lsp = {
 			enabled = true,
@@ -60,13 +62,4 @@ if not status_ok then
 	return
 end
 
---[[ vim.cmd("hi normal guibg=000000") ]]
---[[ vim.o.background = "dark" ]]
---[[ local colorscheme = "tokyonight" ]]
---[[ vim.g.tokyonight_style = "night" ]]
---[[ vim.g.tokyonight_transparent = false ]]
---[[ vim.g.tokyonight_transparent_sidebar = false ]]
-
 vim.g.catppuccin_flavour = "mocha"
-vim.cmd("hi CursorLineNr term=bold gui=bold guifg=#bd93f9") -- fix the cursorline bug by overriding
-vim.cmd("hi CursorLine guibg=#181828 guifg=NONE")

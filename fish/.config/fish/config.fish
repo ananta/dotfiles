@@ -23,6 +23,8 @@ set -gx EDITOR nvim
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.cargo/bin $PATH
+# set -gx PATH /usr/local/anaconda3/bin $PATH  # commented out by conda initialize
 
 # platform specific config
 switch (uname)
@@ -46,6 +48,22 @@ alias palmetto 'ssh anantab@login.palmetto.clemson.edu'
 alias compbio 'ssh compbio-server-2@compbio.clemson.edu'
 alias ndvim 'nvim --cmd "set rtp+=./"'
 alias socashish 'ssh abastol@access.computing.clemson.edu -t ssh joey1'
+alias soc 'ssh anantab@access.computing.clemson.edu -t ssh joey1'
+alias deepgreen 'ssh anantab@access.computing.clemson.edu -t ssh deepgreen'
+alias ashish_sftp 'sftp anantab@access.computing.clemson.edu -t sftp ashish@131.127.55.110'
+alias ashish 'ssh anantab@access.computing.clemson.edu -t ssh ashish@130.127.55.110'
+alias cpu_temp 'sudo powermetrics --samplers smc | grep -i "CPU die"'
+alias pokemon '/Users/anantabastola/Library/Android/sdk/emulator/emulator -avd Pixel_2_API_31'
+alias k 'kubectl'
 
 export PALMETTO_SCP='anantab@xfer02-ext.clemson.edu:/home/anantab'
+
+fish_add_path /Users/anantabastola/.spicetify
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /usr/local/anaconda3/bin/conda
+    eval /usr/local/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
 

@@ -15,33 +15,20 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
-	Text = "",
 	Method = "m",
-	Function = "",
 	Constructor = "",
 	Field = "",
-	Variable = "",
-	Class = "",
 	Interface = "",
 	Module = "",
 	Property = "",
 	Unit = "",
-	Value = "",
 	Enum = "",
-	Keyword = "",
 	Snippet = "",
-	Color = "",
-	File = "",
 	Reference = "",
-	Folder = "",
 	EnumMember = "",
-	Constant = "",
 	Struct = "",
 	Event = "",
-	Operator = "",
-	TypeParameter = "",
 }
 
 cmp.setup({
@@ -61,8 +48,6 @@ cmp.setup({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then

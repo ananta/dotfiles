@@ -1,2 +1,1 @@
--- Mac Configurations
 require("mac")
