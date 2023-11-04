@@ -24,6 +24,13 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
+
+set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx PATH $ANDROID_HOME/emulator $PATH
+set -gx PATH $ANDROID_HOME/platform_tools $PATH
+set -gx PATH /Users/anantabastola/apache-maven-3.9.5/bin $PATH
+
 # set -gx PATH /usr/local/anaconda3/bin $PATH  # commented out by conda initialize
 
 # platform specific config
