@@ -74,3 +74,10 @@ if test -f /usr/local/anaconda3/bin/conda
 end
 # <<< conda initialize <<<
 
+
+# pnpm
+set -gx PNPM_HOME "/Users/anantabastola/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
