@@ -1,8 +1,10 @@
 # Global tool versions (`mise use -g <tool>@<version>` edits this file)
 [tools]
 node = "18.18.2"
+python = "3.13"
 ruby = "3.2.2"
 
 [settings]
-# Switch versions automatically in projects with .nvmrc / .node-version / .ruby-version
-idiomatic_version_file_enable_tools = ["node", "ruby"]
+# Switch versions automatically in projects with .nvmrc / .node-version /
+# .python-version / .ruby-version
+idiomatic_version_file_enable_tools = ["node", "python", "ruby"]

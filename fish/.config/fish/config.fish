@@ -48,17 +48,6 @@ test -f $local_config; and source $local_config
 
 fish_add_path /Users/anantabastola/.spicetify
 
-# conda (Miniforge): load on first use instead of on every shell start (~260ms).
-# Run `conda activate base` to get the conda python on PATH.
-set -l conda_bin /opt/homebrew/Caskroom/miniforge/base/bin/conda
-if test -x $conda_bin
-    function conda --description 'Lazy-load conda' --inherit-variable conda_bin
-        functions --erase conda
-        $conda_bin shell.fish hook | source
-        conda $argv
-    end
-end
-
 # Oracle's MySQL install (the server on :3306); puts the mysql client on PATH
 fish_add_path --global --append /usr/local/mysql/bin
 
@@ -69,8 +58,8 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-# mise: Node and Ruby versions (global defaults in ~/.config/mise/config.toml,
-# per-project from .nvmrc / .node-version / .ruby-version / mise.toml)
+# mise: Node, Python and Ruby versions (global defaults in ~/.config/mise/config.toml,
+# per-project from .nvmrc / .node-version / .python-version / .ruby-version / mise.toml)
 mise activate fish | source
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"

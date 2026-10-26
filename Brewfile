@@ -29,15 +29,15 @@ brew "lazygit"
 
 # Languages & build tools
 brew "go"
-brew "mise" # Node + Ruby versions
+brew "mise" # Node, Python, Ruby versions
+brew "uv"   # Python packages & venvs
 brew "deno"
 brew "composer"
 brew "rust-analyzer"
 brew "cmake"
 brew "gcc"
 
-# Containers & cloud
-brew "podman"
+# Cloud
 brew "flyctl"
 brew "kcat"
 
@@ -55,8 +55,8 @@ cask "font-symbols-only-nerd-font"
 cask "kitty"
 cask "keycastr"
 cask "mactex"
-cask "miniforge" # native conda, replaces Anaconda
-cask "podman-desktop"
+
+cask "orbstack" # docker, compose, kubernetes
 cask "react-native-debugger"
 cask "rectangle"
 cask "vagrant"
