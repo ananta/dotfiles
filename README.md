@@ -1,6 +1,6 @@
 # ananta's dotfiles
 
-![Preview](./preview.gif "Pro edits btw.")
+![kitty + tmux + Neovim with Catppuccin Mocha](./screenshot.png)
 
 macOS (Apple Silicon) setup: **kitty → tmux → fish → Neovim**, with Catppuccin Mocha everywhere.
 
