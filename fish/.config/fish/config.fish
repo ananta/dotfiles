@@ -28,11 +28,14 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
 
-set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home 
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx PATH $ANDROID_HOME/emulator $PATH
 set -gx PATH $ANDROID_HOME/platform_tools $PATH
 set -gx PATH /Users/anantabastola/apache-maven-3.9.5/bin $PATH
+set -gx GEM_HOME $HOME/.rvm/rubies/ruby-3.2.2/bin/gem
+set -gx GEM_PATH $HOME/.rvm/rubies/ruby-3.2.2/bin/gem
+
 
 # set -gx PATH /usr/local/anaconda3/bin $PATH  # commented out by conda initialize
 
@@ -52,21 +55,16 @@ end
 
 starship init fish | source
 
-# alias for super computer
 alias kssh 'kitty +kitten'
-alias palmetto 'ssh anantab@login.palmetto.clemson.edu'
-alias compbio 'ssh compbio-server-2@compbio.clemson.edu'
 alias ndvim 'nvim --cmd "set rtp+=./"'
-alias socashish 'ssh abastol@access.computing.clemson.edu -t ssh joey1'
-alias soc 'ssh anantab@access.computing.clemson.edu -t ssh joey1'
-alias deepgreen 'ssh anantab@access.computing.clemson.edu -t ssh deepgreen'
-alias ashish_sftp 'sftp anantab@access.computing.clemson.edu -t sftp ashish@131.127.55.110'
-alias ashish 'ssh anantab@access.computing.clemson.edu -t ssh ashish@130.127.55.110'
 alias cpu_temp 'sudo powermetrics --samplers smc | grep -i "CPU die"'
 alias pokemon '/Users/anantabastola/Library/Android/sdk/emulator/emulator -avd Pixel_2_API_31'
 alias k 'kubectl'
+alias flush_dns 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
-export PALMETTO_SCP='anantab@xfer02-ext.clemson.edu:/home/anantab'
+# Private hosts, usernames and IPs live in local.fish (gitignored)
+set -l local_config (dirname (status --current-filename))/local.fish
+test -f $local_config; and source $local_config
 
 fish_add_path /Users/anantabastola/.spicetify
 
@@ -84,3 +82,12 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+rvm default
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
+
+string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/anantabastola/.lmstudio/bin
+# End of LM Studio CLI section
