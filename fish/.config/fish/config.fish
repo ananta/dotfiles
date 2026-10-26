@@ -1,7 +1,11 @@
 set fish_greeting ""
 
-# Native (Apple Silicon) Homebrew first, ahead of the old Intel one in /usr/local
-/opt/homebrew/bin/brew shellenv fish | source
+# Native (Apple Silicon) Homebrew first, ahead of the old Intel one in /usr/local.
+# Static equivalent of `brew shellenv fish`, which costs ~110ms to run on every shell.
+set -gx HOMEBREW_PREFIX /opt/homebrew
+set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
+set -gx HOMEBREW_REPOSITORY /opt/homebrew
+fish_add_path --global --move --path /opt/homebrew/bin /opt/homebrew/sbin
 
 # set -gx TERM xterm-256color
 
@@ -33,11 +37,7 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx PATH $ANDROID_HOME/emulator $PATH
 set -gx PATH $ANDROID_HOME/platform_tools $PATH
 set -gx PATH /Users/anantabastola/apache-maven-3.9.5/bin $PATH
-set -gx GEM_HOME $HOME/.rvm/rubies/ruby-3.2.2/bin/gem
-set -gx GEM_PATH $HOME/.rvm/rubies/ruby-3.2.2/bin/gem
 
-
-# set -gx PATH /usr/local/anaconda3/bin $PATH  # commented out by conda initialize
 
 # platform specific config
 switch (uname)
@@ -68,12 +68,19 @@ test -f $local_config; and source $local_config
 
 fish_add_path /Users/anantabastola/.spicetify
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /usr/local/anaconda3/bin/conda
-    eval /usr/local/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+# conda (Miniforge): load on first use instead of on every shell start (~260ms).
+# Run `conda activate base` to get the conda python on PATH.
+set -l conda_bin /opt/homebrew/Caskroom/miniforge/base/bin/conda
+if test -x $conda_bin
+    function conda --description 'Lazy-load conda' --inherit-variable conda_bin
+        functions --erase conda
+        $conda_bin shell.fish hook | source
+        conda $argv
+    end
 end
-# <<< conda initialize <<<
+
+# Oracle's MySQL install (the server on :3306); puts the mysql client on PATH
+fish_add_path --global --append /usr/local/mysql/bin
 
 
 # pnpm
@@ -82,7 +89,13 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
-rvm default
+
+# Ruby: the environment `rvm default` (ruby-3.2.2) sets up, without spawning
+# bash + rvm on every shell start (~1.8s). `rvm use <version>` still works.
+set -gx rvm_path $HOME/.rvm
+set -gx GEM_HOME $HOME/.rvm/gems/ruby-3.2.2
+set -gx GEM_PATH $HOME/.rvm/gems/ruby-3.2.2:$HOME/.rvm/gems/ruby-3.2.2@global
+set -gx PATH $HOME/.rvm/gems/ruby-3.2.2/bin $HOME/.rvm/gems/ruby-3.2.2@global/bin $HOME/.rvm/rubies/ruby-3.2.2/bin $HOME/.rvm/bin $PATH
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
 
