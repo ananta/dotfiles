@@ -1,5 +1,8 @@
 set fish_greeting ""
 
+# Native (Apple Silicon) Homebrew first, ahead of the old Intel one in /usr/local
+/opt/homebrew/bin/brew shellenv fish | source
+
 # set -gx TERM xterm-256color
 
 # theme
