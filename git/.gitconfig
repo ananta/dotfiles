@@ -7,3 +7,12 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	# n / N jump between files in a diff
+	navigate = true
+[merge]
+	conflictStyle = zdiff3

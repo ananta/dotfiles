@@ -1,0 +1,4 @@
+# Render diffs with delta (see git/.gitconfig for its settings)
+git:
+  diffRenderers:
+    - command: delta --paging=never

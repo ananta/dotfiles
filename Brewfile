@@ -5,7 +5,6 @@
 brew "fish"
 brew "starship"
 brew "tmux"
-brew "macchina"
 brew "stow"
 
 # Editor
@@ -16,7 +15,6 @@ brew "tree-sitter-cli" # nvim-treesitter parser builds
 brew "ripgrep"
 brew "fd"
 brew "fzf"
-brew "peco"
 brew "eza" # maintained fork of exa
 brew "tree"
 brew "ncdu"
@@ -53,6 +51,9 @@ brew "yt-dlp"
 
 # Apps
 cask "font-hack-nerd-font"
+cask "font-jetbrains-mono"
+cask "font-symbols-only-nerd-font"
+cask "kitty"
 cask "keycastr"
 cask "mactex"
 cask "miniforge" # native conda, replaces Anaconda

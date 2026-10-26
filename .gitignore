@@ -1,2 +1,3 @@
 # Machine-local / private config
 fish/.config/fish/local.fish
+.DS_Store
