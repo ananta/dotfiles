@@ -29,8 +29,7 @@ brew "lazygit"
 
 # Languages & build tools
 brew "go"
-brew "fnm"
-brew "yarn"
+brew "mise" # Node + Ruby versions
 brew "deno"
 brew "composer"
 brew "rust-analyzer"

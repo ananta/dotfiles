@@ -69,12 +69,9 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-# Ruby: the environment `rvm default` (ruby-3.2.2) sets up, without spawning
-# bash + rvm on every shell start (~1.8s). `rvm use <version>` still works.
-set -gx rvm_path $HOME/.rvm
-set -gx GEM_HOME $HOME/.rvm/gems/ruby-3.2.2
-set -gx GEM_PATH $HOME/.rvm/gems/ruby-3.2.2:$HOME/.rvm/gems/ruby-3.2.2@global
-set -gx PATH $HOME/.rvm/gems/ruby-3.2.2/bin $HOME/.rvm/gems/ruby-3.2.2@global/bin $HOME/.rvm/rubies/ruby-3.2.2/bin $HOME/.rvm/bin $PATH
+# mise: Node and Ruby versions (global defaults in ~/.config/mise/config.toml,
+# per-project from .nvmrc / .node-version / .ruby-version / mise.toml)
+mise activate fish | source
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
 string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
