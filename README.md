@@ -45,6 +45,16 @@ stow */ # Everything (the '/' ignores the README)
 stow tmux # Just my tmux config
 ```
 
+5. Finish setup
+
+```bash
+chsh -s /opt/homebrew/bin/fish   # after adding it to /etc/shells
+mise install                     # Node, Python, Ruby from ~/.config/mise/config.toml
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # then prefix + I in tmux
+```
+
+Private hosts/aliases go in `fish/.config/fish/local.fish` (gitignored).
+
 ## Programs
 
 An updated list of all the programs I use can be found in the `BrewFile`.
