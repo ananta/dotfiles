@@ -14,13 +14,15 @@ local function on_attach(args)
 		vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc, nowait = true, silent = true })
 	end
 
-	-- K (hover), grn (rename), gra (code action) and gO (symbols) are Neovim defaults
+	-- K (hover) and gO (symbols) are Neovim defaults. The default grn/gra are
+	-- shadowed by the `gr` mapping below, hence <leader>rn / <leader>ca.
 	map("gD", vim.lsp.buf.declaration, "Go to declaration")
 	map("gd", vim.lsp.buf.definition, "Go to definition")
 	map("gi", vim.lsp.buf.implementation, "Go to implementation")
 	map("gr", vim.lsp.buf.references, "References")
 	map("<C-k>", vim.lsp.buf.signature_help, "Signature help")
 	map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+	map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
 	map("gl", vim.diagnostic.open_float, "Line diagnostics")
 	map("[d", function()
 		vim.diagnostic.jump({ count = -1, float = true })
